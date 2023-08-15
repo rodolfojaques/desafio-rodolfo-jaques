@@ -1,4 +1,4 @@
-import Calculadora from "./calculadora";
+import Calculadora from "./calculadora"
 
 class CaixaDaLanchonete {
     calcularValorDaCompra(metodoDePagamento, itens) {
@@ -21,4 +21,4 @@ class CaixaDaLanchonete {
     }
 }
 
-export { CaixaDaLanchonete };
+export { CaixaDaLanchonete }

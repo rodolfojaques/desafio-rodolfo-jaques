@@ -35,7 +35,9 @@ describe('CaixaDaLanchonete', () => {
 
     test.each([
         ['com quantidade zero', 'dinheiro', 'Quantidade inválida!', ['cafe,0']],
+        ['com quantidade menor que zero', 'debito', 'Quantidade inválida!', ['cafe,-2']],
         ['com um valor', 'credito', 'Item inválido!', ['1']],
+        ['com três valores', 'dinheiro', 'Item inválido!', ['2,cafe,1']],
         ['com código inexistente', 'debito', 'Item inválido!', ['pizza, 1']],
         ['com forma de pagamento inválida', 'especie', 'Forma de pagamento inválida!', ['cafe, 1']],
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
@@ -45,7 +47,9 @@ describe('CaixaDaLanchonete', () => {
         ['chantily', 'dinheiro', 'Item extra não pode ser pedido sem o principal', ['chantily,1']],
         ['queijo', 'credito', 'Item extra não pode ser pedido sem o principal', ['queijo,1']],
         ['chantily com outro item', 'credito', 'Item extra não pode ser pedido sem o principal', ['chantily,1', 'sanduiche,1']],
+        ['chantily com outro item (combo2 não é considerado principal)', 'credito', 'Item extra não pode ser pedido sem o principal', ['chantily,1', 'combo2,1']],
         ['queijo com outro item', 'debito', 'Item extra não pode ser pedido sem o principal', ['cafe,1', 'queijo,1']],
+        ['queijo com outro item (combo1 não é considerado principal)', 'debito', 'Item extra não pode ser pedido sem o principal', ['combo1,1', 'queijo,1']],
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
         validaTeste(formaDePagamento, resultadoEsperado, itens));
 });
